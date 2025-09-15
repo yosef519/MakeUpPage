@@ -1,0 +1,384 @@
+@import url("https://fonts.googleapis.com/css2?family=Solitreo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@100..800&display=swap");
+
+body {
+  scroll-behavior: smooth;
+
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  /* font-family: Arial, sans-serif; */
+  line-height: 1.6;
+  background-color: #f7f3f0;
+}
+
+/* Navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  background-color: transparent; /* שקוף בהתחלה */
+  position: fixed; /* שונה ל-fixed במקום sticky */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 1s ease-in-out; /* מהיר יותר ועם כל הנכסים */
+}
+
+header.scrolled {
+  background-color: rgba(233, 198, 180, 0.6); /* עם שקיפות קלה */
+  backdrop-filter: blur(10px); /* אפקט blur יפה */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  padding: 8px 80px; /* פאדינג קצר יותר כשגוללים */
+}
+
+.logo img {
+  height: 4.5em;
+  width: auto;
+  display: block;
+  /* transition: height 0.3s ease; אנימציה לגודל הלוגו */
+}
+
+/* לוגו קטן יותר כשגוללים */
+/* header.scrolled .logo img {
+  height: 2.5em;
+} */
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #734a3b;
+  font-size: 16px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 30px;
+  }
+
+  /* header.scrolled {
+    padding: 10px 30px;
+  } */
+
+  nav ul {
+    gap: 20px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  direction: rtl;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 400px;
+  padding-top: 3%;
+  padding-left: 10%;
+  transform: scale(1.2);
+  display: block;
+}
+
+.hero-text {
+  max-width: 500px;
+  padding-right: 40px;
+  text-align: right;
+}
+
+.hero-text h1 {
+  font-family: "Playpen Sans Hebrew", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 44px;
+  margin: 0;
+  line-height: 1.2;
+  color: #573a34;
+}
+
+.hero-text p {
+  font-family: "Playpen Sans Hebrew", cursive;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #5a3a31;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #86644a; /* חום בהיר */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* אפקט לחיצה קטן */
+.btn:active {
+  transform: scale(0.99);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* שכבת הברק */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%; /* הגדלת רוחב הברק */
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.271),
+    /* הגברת השקיפות */ transparent
+  );
+  transform: skewX(-20deg);
+  transition: transform 0s, left 0s; /* מאפס אנימציות קודמות */
+}
+
+.btn:hover::after {
+  animation: shine 1.2s forwards; /* אנימציה איטית יותר */
+}
+
+@keyframes shine {
+  to {
+    left: 150%; /* האפקט עובר לצד השני של הכפתור */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero img {
+    padding-top: 8%;
+  }
+}
+
+/* About Section */
+.about {
+  padding: 80px 10%;
+  background-color: #fff;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.about-text {
+  flex: 1;
+  text-align: right; /* כי זה בעברית */
+}
+
+.about-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #3a2a23;
+  font-family: "Playfair Display", serif;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+}
+
+.about-list li {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #734a3b;
+  font-weight: 600;
+  font-style: oblique;
+}
+
+.about-image {
+  flex: 1;
+  text-align: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 400px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 40px;
+  }
+
+  .about h1 {
+    font-size: 36px;
+  }
+
+  .about p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 40px 20px;
+  }
+
+  .about h1 {
+    font-size: 30px;
+  }
+
+  .about p {
+    font-size: 15px;
+  }
+}
+
+/* Portfolio Saction */
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.portfolio-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+}
+
+.slide-track {
+  display: flex;
+  gap: 20px;
+  will-change: transform;
+}
+
+.slide-track img {
+  width: 250px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.slide-track img:hover {
+  transform: scale(1.05);
+}
+/* כותרת ראשית */
+.portfolio h2 {
+  font-size: 28px !important;
+  font-weight: 700;
+  color: #3e2723; /* חום כהה אלגנטי */
+  margin: 20px 0 10px;
+  line-height: 1.4;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+  animation: fadeInUp 1s ease both;
+}
+
+/* פס עדין מתחת ל-h2 */
+.portfolio h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(to right, #d4a373, transparent);
+  border-radius: 2px;
+}
+
+/* טקסט משני */
+.portfolio h4 {
+  font-size: 20px !important;
+  font-weight: 400;
+  color: #6d4c41; /* חום רך יותר */
+  margin: 10px 0 25px;
+  line-height: 1.6;
+  font-style: italic; 
+  animation: fadeIn 1.5s ease both;
+}
+
+
+
+/* אנימציות עדינות */
+/* אנימציה לעלייה עם דהייה */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* אנימציה לדהייה רגילה */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.portfolio h2,
+.portfolio h4 {
+  animation: none;
+}
+
+/* חיבור האנימציות לטקסטים */
+.portfolio h2.animate {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.portfolio h4.animate {
+  animation: fadeIn 1.5s ease forwards;
+}
