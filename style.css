@@ -156,25 +156,45 @@ nav a:hover {
   position: absolute;
   top: 0;
   left: -150%;
-  width: 50%; /* הגדלת רוחב הברק */
+  width: 50%;
   height: 100%;
   background: linear-gradient(
     120deg,
     transparent,
     rgba(255, 255, 255, 0.271),
-    /* הגברת השקיפות */ transparent
+    transparent
   );
   transform: skewX(-20deg);
-  transition: transform 0s, left 0s; /* מאפס אנימציות קודמות */
 }
 
+/* בריחוף – ברק קדימה (שמאל → ימין) */
 .btn:hover::after {
-  animation: shine 1.2s forwards; /* אנימציה איטית יותר */
+  animation: shine 1.2s forwards;
 }
 
+/* בלחיצה – ברק אחורה (ימין → שמאל) */
+.btn.clicked::after,
+.btn.clicked:hover::after {
+  animation: shine-reverse 1.6s forwards;
+}
+
+/* אנימציה קדימה */
 @keyframes shine {
+  from {
+    left: -150%;
+  }
   to {
-    left: 150%; /* האפקט עובר לצד השני של הכפתור */
+    left: 150%;
+  }
+}
+
+/* אנימציה אחורה */
+@keyframes shine-reverse {
+  from {
+    left: 150%;
+  }
+  to {
+    left: -150%;
   }
 }
 
@@ -306,12 +326,13 @@ nav a:hover {
 
 .slide-track img:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 /* כותרת ראשית */
 .portfolio h2 {
   font-size: 28px !important;
   font-weight: 700;
-  color: #3e2723; /* חום כהה אלגנטי */
+  color: #3e232a;
   margin: 20px 0 10px;
   line-height: 1.4;
   position: relative;
@@ -340,11 +361,9 @@ nav a:hover {
   color: #6d4c41; /* חום רך יותר */
   margin: 10px 0 25px;
   line-height: 1.6;
-  font-style: italic; 
+  font-style: italic;
   animation: fadeIn 1.5s ease both;
 }
-
-
 
 /* אנימציות עדינות */
 /* אנימציה לעלייה עם דהייה */
